@@ -19,6 +19,7 @@ class ProductController extends Controller
         $params = $request->all();
         $name = $params['name'];
         $desc = $params["description"];
+        $product_type = $params["product_type"];
         $price = $params['price'];
         $image = $request->file('image');
         $image_uploaded_path =  $image->store($uploadFolder, 'public');
@@ -26,6 +27,7 @@ class ProductController extends Controller
         $product->name = $name;
         $product->description= $desc;
         $product->price = $price;
+        $product->product_type = $product_type;
         $product->image =  url('') .'/storage'.$image_uploaded_path;
         $product->save();
         return $product;

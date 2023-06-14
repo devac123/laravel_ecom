@@ -1,30 +1,103 @@
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center products">
-                @foreach ($products as $item)
-                <a href="/product/1">
-                    <div class="col mb-5">
-                        <div class="card h-100 ">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{$item['image']}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"> {{$item['name']}}</h5>
-                                    <!-- Product price-->
-                                    Rs /- {{$item['price']}}
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center cart-button"><a class="btn btn-outline-dark mt-auto" href="#">ADD To CART</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    </a>
-                @endforeach
+
+<section class="py-12">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+
+          <!-- Heading -->
+          <h2 class="mb-4 text-center">Top month Sellers</h2>
+
+          <!-- Nav -->
+          <div class="nav justify-content-center mb-10">
+            <a class="nav-link" href="#topSellersTab" data-bs-toggle="tab">Women</a>
+            <a class="nav-link" href="#topSellersTab" data-bs-toggle="tab">Men</a>
+            <a class="nav-link active" href="#topSellersTab" data-bs-toggle="tab">Kids</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade active show" id="topSellersTab">
+          <div class="row">
+          @foreach ($products as $item)
+            <div class="col-6 col-md-4 col-lg-3">
+
+              <!-- Card -->
+              <div class="card mb-7">
+
+                <!-- Badge -->
+                <div class="badge bg-white text-body card-badge card-badge-start text-uppercase">
+                  New
                 </div>
+
+                <!-- Image -->
+                <div class="card-img">
+
+                  <!-- Image -->
+                  <a class="card-img-hover" href="product.html">
+                    <img class="card-img-top card-img-back" src="{{$item['image']}}" alt="...">
+                    <img class="card-img-top card-img-front" src="{{$item['image']}}" alt="...">
+                  </a>
+
+                  <!-- Actions -->
+                  <div class="card-actions">
+                    <span class="card-action">
+                      <button class="btn btn-xs btn-circle btn-white-primary" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                        <i class="fe fe-eye"></i>
+                      </button>
+                    </span>
+                    <span class="card-action">
+                      <button class="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                        <i class="fe fe-shopping-cart"></i>
+                      </button>
+                    </span>
+                    <span class="card-action">
+                      <button class="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                        <i class="fe fe-heart"></i>
+                      </button>
+                    </span>
+                  </div>
+
+                </div>
+
+                <!-- Body -->
+                <div class="card-body px-0">
+
+                  <!-- Category -->
+                  <div class="fs-xs">
+                    <a class="text-muted" href="shop.html">Shoes | {{$item['product_type']}}</a>
+                  </div>
+
+                  <!-- Title -->
+                  <div class="fw-bold">
+                    <a class="text-body" href="product.html">
+                      Leather mid-heel Sandals |{{$item['name']}}
+                    </a>
+                  </div>
+
+                  <!-- Price -->
+                  <div class="fw-bold text-muted">
+                    ${{$item['price']}}.00
+                  </div>
+
+                </div>
+
+              </div>
+
             </div>
-        </section>
+            @endforeach
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+
+          <!-- Link  -->
+          <div class="mt-7 text-center">
+            <a class="link-underline" href="#!">Discover more</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
