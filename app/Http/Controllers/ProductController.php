@@ -7,7 +7,12 @@ use Illuminate\Routing\UrlGenerator;
 
 class ProductController extends Controller
 {
-   
+    protected $req;
+    public function __construct(Request $reqest)
+    {
+        $this->req = $reqest;
+    }
+
     public function addProduct(Request $request)
     {
         $uploadFolder = 'images';
@@ -16,7 +21,6 @@ class ProductController extends Controller
         $desc = $params["description"];
         $price = $params['price'];
         $image = $request->file('image');
-        die();
         $image_uploaded_path =  $image->store($uploadFolder, 'public');
         $product = new Product;
         $product->name = $name;
@@ -27,13 +31,24 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function getProduct(){
-        return Product::all()->toArray();
+    public function getProducts(){
+        $products = Product::all();
+            $ret = view('dashboard',['products' => $products]);
+            if($this->isApi($this->req->getRequestUri())){
+                $ret = $products->toArray();
+            }
+            return $ret;
     }
 
     public function singleProduct($id){
-        $product = Product::select('name')->where('id',$id)->get();
-        $url = new Request;
-        return $product->toArray();
+        $product = Product::select('*')->where('id',$id)->get();
+        $ret = view('product',[$product]);
+        if($this->isApi($this->req->getRequestUri())){
+            $ret = $product->toArray();
+        }
+        return $ret;
+    }
+    private function isApi($path){
+       return str_contains($path, '/api') && strpos($path,'/api') == 0;
     }
 }

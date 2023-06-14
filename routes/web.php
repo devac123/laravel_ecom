@@ -14,6 +14,6 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('', [Dashboard::class, 'index']);
+Route::get('/', [ProductController::class, 'getProducts']);
 Route::get('/add-product', [Dashboard::class, 'addproduct']);
 Route::get('/product/{id}',[ProductController::class, 'singleProduct']);

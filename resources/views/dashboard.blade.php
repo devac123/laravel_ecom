@@ -1,6 +1,6 @@
 @extends('layout')
 
 @section('content')
-    @include('banner')
+    @include('Catagories')
     @include('products')
 @endsection
